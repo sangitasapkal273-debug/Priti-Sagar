@@ -1,0 +1,119 @@
+# Priti-Sagar
+Wedding of Priti and Sagar 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priti & Sagar's Wedding</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --gold: #c5a059; --cream: #fffdf5; --lotus: #ff85a2; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fdf6e3; overflow-x: hidden; }
+        
+        /* Animated Background */
+        .bg-animate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #fffdf5, #f7e8d0);
+            z-index: -1; opacity: 0.6;
+        }
+
+        /* Envelope Opening Logic */
+        #envelope-wrapper {
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            background: #222; transition: opacity 1s ease;
+        }
+        .wax-stamp {
+            width: 80px; height: 80px; background: var(--lotus); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 2px solid #b03a56; transition: transform 0.3s;
+        }
+        .wax-stamp:hover { transform: scale(1.1); }
+        .wax-stamp img { width: 50px; filter: brightness(0) invert(1); }
+
+        /* Main Content */
+        #main-site { display: none; text-align: center; padding: 20px; }
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        h1 { font-family: 'Dancing Script', cursive; fontSize: 4rem; color: #444; }
+        
+        .card { background: white; margin: 20px auto; padding: 30px; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); }
+        .countdown { font-size: 1.5rem; color: var(--gold); font-weight: bold; margin: 20px; }
+        .map-btn { background: var(--gold); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="YOUR_LINK_TO_RABBA_SONG.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="bg-animate" id="particles"></div>
+
+    <!-- The Opening Experience -->
+    <div id="envelope-wrapper">
+        <div class="wax-stamp" onclick="openInvitation()">
+            <img src="https://flaticon.com" alt="Lotus">
+        </div>
+        <p style="position: absolute; bottom: 30%; color: white; font-style: italic;">Tap the Lotus to enter Priti & Sagar's World</p>
+    </div>
+
+    <!-- The Invitation -->
+    <div id="main-site">
+        <div class="hero">
+            <p>Our journey begins...</p>
+            <h1>Priti & Sagar</h1>
+            <p>03 . 05 . 2026</p>
+            <div class="countdown" id="timer">Loading Countdown...</div>
+        </div>
+
+        <div class="card">
+            <h2>From the Bride’s Heart</h2>
+            <p>"I found my home in him. Can't wait to start this adventure!" - Priti</p>
+        </div>
+
+        <div class="card">
+            <h2>The Haldi Ceremony</h2>
+            <p>📍 Tondapur, Tal. Jamner, Dist. Jalgaon</p>
+            <p>📅 May 2nd, 2026 | ⌚ 07:00 PM</p>
+            <a href="https://google.com" class="map-btn">Get Directions</a>
+        </div>
+
+        <div class="card">
+            <h2>The Wedding</h2>
+            <p>📍 Tondapur, Tal. Jamner, Dist. Jalgaon</p>
+            <p>📅 May 3rd, 2026 | ⌚ 12:35 PM</p>
+            <a href="https://google.com" class="map-btn">Get Directions</a>
+        </div>
+
+        <div class="card">
+            <h2>Share Your Memories</h2>
+            <p>Upload your photos to our gallery!</p>
+            <input type="file" accept="image/*">
+            <button class="map-btn">Upload</button>
+        </div>
+    </div>
+
+    <script>
+        function openInvitation() {
+            document.getElementById('bgMusic').play();
+            document.getElementById('envelope-wrapper').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('envelope-wrapper').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+            }, 1000);
+        }
+
+        // Simple Countdown Logic
+        const weddingDate = new Date("May 3, 2026 12:35:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("timer").innerHTML = `${days}d ${hours}h left until we say I Do!`;
+        }, 1000);
+    </script>
+</body>
+</html>
